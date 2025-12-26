@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>카몬 (Kamon)</title>
+  <title>카몬 (Carmon)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 메인 화면 -->
   <main class="screen" id="mainMenu" aria-label="메인 화면">
     <div class="card">
       <h1 class="title">카몬</h1>
-      <p class="subtitle">1대1 실시간 레인 카드게임</p>
+      <p class="subtitle">1대1 실시간 3레인 카드게임</p>
 
       <div class="btn-row">
         <button class="btn primary" id="btnStart">게임 시작</button>
@@ -21,8 +22,71 @@
     </div>
 
     <footer class="footer">
-      <span>© Kamon</span>
+      <span>© Carmon</span>
     </footer>
+  </main>
+
+  <!-- 게임 화면 -->
+  <main class="game screen hidden" id="gameScreen" aria-label="게임 화면">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="btn small" id="btnBack">← 메인</button>
+      </div>
+
+      <div class="top-mid">
+        <div class="pressing">
+          <div class="pressing-label">
+            프래싱: <span id="pressingText">0</span>/<span id="pressingMaxText">10</span>
+          </div>
+          <div class="pressing-bar" aria-label="프래싱 게이지">
+            <div class="pressing-fill" id="pressingFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-right">
+        <div class="tower-hp">
+          <span class="hp enemy">상대 타워</span>
+          <b id="enemyHpText">2000</b>
+          <span class="sep">|</span>
+          <span class="hp me">내 타워</span>
+          <b id="myHpText">2000</b>
+        </div>
+      </div>
+    </header>
+
+    <section class="board-wrap">
+      <div class="board">
+        <!-- 레인 밖 소환 영역(내 쪽) -->
+        <div class="offlane" id="offlane">
+          <div class="offlane-title">레인 밖 소환 영역(내 쪽)</div>
+        </div>
+
+        <!-- 3레인 -->
+        <div class="lanes">
+          <div class="lane" data-lane="0">
+            <div class="lane-label">레인 1</div>
+            <div class="lane-field" id="lane0"></div>
+          </div>
+          <div class="lane" data-lane="1">
+            <div class="lane-label">레인 2</div>
+            <div class="lane-field" id="lane1"></div>
+          </div>
+          <div class="lane" data-lane="2">
+            <div class="lane-label">레인 3</div>
+            <div class="lane-field" id="lane2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hand-wrap" aria-label="손패">
+      <div class="hand-title">
+        손패(4장) · 카드를 선택한 뒤 레인을 클릭해서 소환하세요
+        <span class="selected" id="selectedCardText">선택: 없음</span>
+      </div>
+      <div class="hand" id="hand"></div>
+    </section>
   </main>
 
   <script src="app.js"></script>
